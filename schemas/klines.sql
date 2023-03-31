@@ -1,0 +1,20 @@
+CREATE TABLE IF NOT EXISTS klines(
+    id integer PRIMARY KEY,
+    currency_id INTEGER NOT NULL,
+    currency_interval_id INTEGER NOT NULL,
+    interval_name TEXT NOT NULL,
+    open_time INTEGER NOT NULL,
+    open REAL NOT NULL,
+    high REAL NOT NULL,
+    low REAL NOT NULL,
+    close REAL NOT NULL,
+    volume REAL NOT NULL,
+    close_time INTEGER NOT NULL,
+    quote_asset_volume REAL NOT NULL,
+    trades_count INTEGER NOT NULL,
+    taker_buy_base_asset_volume REAL NOT NULL,
+    taker_buy_quote_asset_volume REAL NOT NULL,
+    FOREIGN KEY (currency_id) REFERENCES currency (id),
+    FOREIGN KEY (currency_interval_id) REFERENCES currency_interval (id),
+    UNIQUE(currency_id, currency_interval_id, open_time)
+);
